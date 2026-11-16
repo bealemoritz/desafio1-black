@@ -249,7 +249,7 @@ const byU=new Map(all.map(r=>[r.instagram,r]));
 const F=document.getElementById('flash');
 OFICIAL.forEach((u,i)=>{const r=byU.get(u);F.append(el('div',{class:'tile shade'},el('div',{class:'label'},(i+1)+'º · R$ 200'),el('div',{class:'big',style:'font-size:17px;overflow-wrap:anywhere'},u),el('div',{class:'small'},r?r.nome:''),el('div',{class:'small'},r?(r.pedidos_1111+(r.pedidos_1111>1?' pedidos':' pedido')+' em 11/11 · '+r.reels+' reels'):'')));});
 const fora=emb.filter(r=>r.pedidos_1111>0&&!OFICIAL.includes(r.instagram)).sort((a,b)=>b.pedidos_1111-a.pedidos_1111||b.pedidos_16out_11nov-a.pedidos_16out_11nov).slice(0,4);
-document.getElementById('flash-note').innerHTML=`<b>Lista oficial do Relâmpago 11.11</b>, definida pelo time. Em 11/11 as embaixadoras fizeram <b>${emb.reduce((a,r)=>a+r.pedidos_1111,0)} pedidos</b>.`+(fora.length?` Também venderam no dia, mas não estão na lista: ${fora.map(r=>r.instagram+' ('+r.pedidos_1111+(r.pedidos_1111>1?' pedidos':' pedido')+', '+r.reels+' reels)').join(', ')}.`:'');
+document.getElementById('flash-note').innerHTML=`<b>Lista oficial do Relâmpago 11.11</b>, definida pelo time. Em 11/11 as embaixadoras fizeram <b>${emb.reduce((a,r)=>a+r.pedidos_1111,0)} pedidos</b>.`;
 
 /* grupos */
 const G=document.getElementById('groups');
