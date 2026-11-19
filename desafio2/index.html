@@ -219,7 +219,7 @@ const cnt=s=>emb.filter(r=>r.situacao===s).length;
 const vend=emb.filter(r=>r.pedidos>0);
 const K={total:emb.length,vend:vend.length,ok:cnt(ORDER[0]),falta:cnt(ORDER[1]),ped:emb.reduce((a,r)=>a+r.pedidos,0),rec:emb.reduce((a,r)=>a+r.receita,0),
   lib:emb.reduce((a,r)=>a+r.premio_liberado,0),pot:emb.reduce((a,r)=>a+r.premio,0),reels:emb.reduce((a,r)=>a+r.reels,0),comReels:emb.filter(r=>r.reels>=2).length};
-document.getElementById('lead').innerHTML=`Parcial até ${dia(LAST)}. O desafio vai até 19/11. <b>${K.ok+K.falta} das ${K.total}</b> embaixadoras já bateram pelo menos a primeira meta (3 pedidos). Dessas, <b>${K.ok}</b> já têm os 2 reels e estão com o prêmio liberado, e <b>${K.falta}</b> bateram meta mas ainda precisam postar reels até 19/11.`;
+document.getElementById('lead').innerHTML=`${LAST==='2026-11-19'?'Parcial com dados até hoje, 19/11, último dia do desafio.':'Parcial até '+dia(LAST)+'. O desafio vai até 19/11.'} <b>${K.ok+K.falta} das ${K.total}</b> embaixadoras já bateram pelo menos a primeira meta (3 pedidos). Dessas, <b>${K.ok}</b> já têm os 2 reels e estão com o prêmio liberado, e <b>${K.falta}</b> bateram meta mas ainda precisam postar reels até 19/11.`;
 const tiles=[
   ['Participantes',INT.format(K.total),'lista do Esquenta, sem Meta Ads'],
   ['Venderam no Mês Black',INT.format(K.vend),PCT(K.vend/K.total)+' da lista, pelo menos 1 pedido'],
