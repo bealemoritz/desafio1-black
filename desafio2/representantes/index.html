@@ -134,7 +134,7 @@ td .sit{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 
   <section>
     <h2>Metas do Mês Black</h2>
-    <p class="desc">Prêmio por pedidos aprovados no cupom de 01 a 19/11, além da comissão de sempre. Vale a maior meta batida. Em cada degrau aparece quem está nele hoje.</p>
+    <p class="desc">Prêmio por pedidos aprovados no cupom de 01 a 19/11, além da comissão de sempre. Vale a maior meta batida. Em cada degrau aparece quem terminou nele.</p>
     <div class="ladder" id="ladder"></div>
   </section>
 
@@ -240,10 +240,10 @@ const K={total:reps.length,vend:vend.length,meta:cnt(ORDER[0]),um:cnt(ORDER[1]),
   pix:reps.reduce((a,r)=>a+r.premio_pix,0),prod:reps.reduce((a,r)=>a+r.produtos,0)};
 const elig=reps.filter(r=>r.destrave),dest=elig.filter(r=>r.destravou);
 document.getElementById('lead').innerHTML=`O Mês Black fechou em 19/11, às 23h59. <b>${K.meta} das ${K.total}</b> representantes bateram pelo menos a primeira meta (2 pedidos), e <b>${K.vend}</b> venderam pelo menos 1 vez no período. Outras <b>${K.um}</b> ficaram com 1 pedido, a 1 da primeira meta. No Destrave, <b>${dest.length} das ${elig.length}</b> que não venderam no Esquenta fizeram a primeira venda.`;
-[['Representantes ativas',INT.format(K.total),'aprovadas hoje na Inbazz'],
+[['Representantes ativas',INT.format(K.total),'aprovadas na Inbazz em 20/11'],
  ['Venderam no Mês Black',INT.format(K.vend),PCT(K.vend/K.total)+' da base, pelo menos 1 pedido'],
  ['Bateram meta',INT.format(K.meta),'2 pedidos ou mais',true],
- ['Prêmios das metas',BRL0.format(K.pix),'+ '+K.prod+' produtos, na meta atual de cada uma',true],
+ ['Prêmios das metas',BRL0.format(K.pix),'+ '+K.prod+' produtos, pela meta batida',true],
  ['Pedidos com cupom',INT.format(K.ped),'de 01/11 até '+dia(LAST)],
  ['Vendas com cupom',BRL0.format(K.rec),'faturamento das representantes'],
  ['Ticket médio',BRL0.format(K.ped?K.rec/K.ped:0),'por pedido'],
@@ -257,7 +257,7 @@ METAS.forEach((m,i)=>{
   const who=reps.filter(r=>r.pedidos>=m.n&&r.pedidos<nxt).sort((a,b)=>b.pedidos-a.pedidos||a.instagram.localeCompare(b.instagram));
   const w=el('div',{class:'who'});
   if(who.length) who.forEach(r=>w.append(el('div',{},r.instagram+' · '+r.pedidos)));
-  else w.append(el('div',{class:'none'},'Ninguém neste degrau ainda'));
+  else w.append(el('div',{class:'none'},'Ninguém neste degrau'));
   L.append(el('div',{class:'step'+(who.length?' hit':'')},el('div',{class:'label'},'Meta '+(i+1)),el('div',{class:'goal'},m.n+' pedidos'),el('div',{class:'prize'},BRL0.format(m.pix)+' + '+m.prod+(m.prod>1?' produtos':' produto')),w));
 });
 
